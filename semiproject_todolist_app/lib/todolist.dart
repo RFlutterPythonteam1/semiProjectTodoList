@@ -4,4 +4,5 @@ class TodoList {
   static String userId = "";
   static String category = "";
   static String content = "";
+  static int state = 0;
 }
