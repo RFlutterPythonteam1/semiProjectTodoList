@@ -36,6 +36,7 @@ class _ListEditinPageState extends State<ListEditinPage> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
+        
         appBar: AppBar(
           title: const Text("ToDo List 수정하기"),
         ),
@@ -47,7 +48,7 @@ class _ListEditinPageState extends State<ListEditinPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    Container(
                       width: 200,
                       child: DropdownButton(
                         value: selectValue,
@@ -71,35 +72,46 @@ class _ListEditinPageState extends State<ListEditinPage> {
                 TextField(
                   controller: contentCon,
                   decoration: const InputDecoration(
-                    hintText: "입력해주세요",
-                    labelText: "수정할 내용을 입력해주세요",
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
+                      hintText: "입력해주세요",
+                      labelText: "리스트 내용을 입력해주세요",
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
                         width: 1,
-                      )
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
+                      )),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
                         width: 2,
                         color: Colors.blue,
-                      )
-                    )
+                      ))),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if(contentCon.text.trim().isEmpty) {
+                      errorSnackBar(context);
+                    } else {
+                      _showDialog2(context, "수정");
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      minimumSize: const Size(400, 40)),
+                  child: const Text(
+                    "수정하기",
                   ),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    listEdit(context);
+                    _showDialog2(context, "삭제");
                   },
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      minimumSize: const Size(400, 40)),
                   child: const Text(
-                    "수정",
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    listDelete(context);
-                  },
-                  child: const Text(
-                    "삭제",
+                    "삭제하기",
                   ),
                 ),
               ],
@@ -111,10 +123,9 @@ class _ListEditinPageState extends State<ListEditinPage> {
   }
 
   // functions
-  Future<bool> listEdit(BuildContext context) async{
+  Future<bool> listEdit(BuildContext context) async {
     var url = Uri.parse(
-      'http://localhost:8080/Flutter/list_update.jsp?category=$selectValue&content=${contentCon.text}&listId=${TodoList.listId}'
-    );
+        'http://localhost:8080/Flutter/list_update.jsp?category=$selectValue&content=${contentCon.text}&listId=${TodoList.listId}');
 
     var response = await http.get(url);
 
@@ -123,21 +134,19 @@ class _ListEditinPageState extends State<ListEditinPage> {
 
       result = dataConvertedJSON["result"];
 
-      if(result == "OK"){
+      if (result == "OK") {
         _showDialog(context, "수정이");
-
-      }else if(result == "ERROR"){
+      } else if (result == "ERROR") {
         errorSnackBar(context);
       }
     });
-    
+
     return true;
   }
 
-  Future<bool> listDelete(BuildContext context) async{
+  Future<bool> listDelete(BuildContext context) async {
     var url = Uri.parse(
-      'http://localhost:8080/Flutter/list_delete.jsp?listId=${TodoList.listId}'
-    );
+        'http://localhost:8080/Flutter/list_delete.jsp?listId=${TodoList.listId}');
 
     var response = await http.get(url);
 
@@ -146,43 +155,67 @@ class _ListEditinPageState extends State<ListEditinPage> {
 
       result = dataConvertedJSON["result"];
 
-      if(result == "OK"){
+      if (result == "OK") {
         _showDialog(context, "삭제가");
-
-      }else if(result == "ERROR"){
+      } else if (result == "ERROR") {
         errorSnackBar(context);
       }
     });
-    
+
     return true;
   }
-    _showDialog(BuildContext context, String todo){
-    showDialog(context: context, 
-    builder: (BuildContext context){
-      return AlertDialog(
-        title:  const Text('결과'),
-        content: Text('$todo 완료 되었습니다.'),
-        actions: [
-          TextButton(
-            onPressed:(){
-              Navigator.of(context).pop();
-              Navigator.pop(context);
-            }, 
-            child: const Text('OK'),
-          )
-        ],
-      );
-    }
-    );
+
+  _showDialog(BuildContext context, String todo) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('결과'),
+            content: Text('$todo 완료 되었습니다.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.pop(context);
+                },
+                child: const Text('OK'),
+              )
+            ],
+          );
+        });
   }
 
-  errorSnackBar(BuildContext context){
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('입력 에러가 발생했습니다.'),
-        duration: Duration(seconds: 2),
-        backgroundColor: Colors.red,
-      )
-    );
+  _showDialog2(BuildContext context, String todo) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('리스트 $todo하기'),
+            content: Text('$todo 하시겠습니까?'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  todo == "수정" ? listEdit(context) : listDelete(context);
+                },
+                child: const Text('네'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('아니요'),
+              ),
+            ],
+          );
+        });
+  }
+
+  errorSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('내용을 입력해주세요'),
+      duration: Duration(seconds: 2),
+      backgroundColor: Colors.red,
+    ));
   }
 }
