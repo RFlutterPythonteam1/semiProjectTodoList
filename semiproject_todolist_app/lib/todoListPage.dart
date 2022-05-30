@@ -6,7 +6,6 @@ import 'package:semiproject_todolist_app/incompletePage.dart';
 
 
 class ToDoListPage extends StatefulWidget {
-
   const ToDoListPage({Key? key}) : super(key: key);
 
   @override
@@ -42,6 +41,16 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
       appBar: AppBar(
         title: const Text('ToDO List',
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+     
+        actions: [
+          IconButton(
+            onPressed: () {
+              
+
+            }, 
+            icon: const Icon(Icons.add)
+            )
+        ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -51,18 +60,12 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
             child: Text(_today),          
             
           ),
-          GestureDetector(
-            onLongPress: () {
-              //
-
-            },
-            child: SizedBox(
-              height: 600,
-              child: TabBarView(
-                controller: controller,
-                children: [InComoleteList(), ConmpleteList()]
-                ),
-            ),
+          SizedBox(
+            height: 600,
+            child: TabBarView(
+              controller: controller,
+              children: [InComoleteList(), ConmpleteList()]
+              ),
           ),
         ],
       ),

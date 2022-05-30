@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:semiproject_todolist_app/listeditingpage.dart';
 
 class ConmpleteList extends StatefulWidget {
   const ConmpleteList({Key? key}) : super(key: key);
@@ -26,17 +27,27 @@ class _ConmpleteListState extends State<ConmpleteList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: ListView.builder(
-            itemCount: data.length,
-            itemBuilder: (context, index) => Dismissible(
-                key: Key(data[index]['id']),
-                onDismissed: (direction) => _onDismissed(direction, index),
-                confirmDismiss: (direction) =>
-                    _confirmDismiss(direction, context, index),
-                background: _buildBackground,
-                secondaryBackground: _buildSecondBackground,
-                child: _buildListItem(index))));
+    return GestureDetector(
+      onLongPress: () {
+        Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return ListEditinPage();
+                }),
+              ).then((value) => getJSONData());        
+      },
+      child: Scaffold(
+          body: ListView.builder(
+              itemCount: data.length,
+              itemBuilder: (context, index) => Dismissible(
+                  key: Key(data[index]['id']),
+                  onDismissed: (direction) => _onDismissed(direction, index),
+                  confirmDismiss: (direction) =>
+                      _confirmDismiss(direction, context, index),
+                  background: _buildBackground,
+                  secondaryBackground: _buildSecondBackground,
+                  child: _buildListItem(index)))),
+    );
   }
 
   // --- Function ---
