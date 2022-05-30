@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         "/listEditingPage": (context) => const ListEditinPage(),
         "/addListPage" :(context) => const AddListPage(),
       },
-      initialRoute: "/addListPage",
+      initialRoute: "/",
       debugShowCheckedModeBanner: false,
       
     );
