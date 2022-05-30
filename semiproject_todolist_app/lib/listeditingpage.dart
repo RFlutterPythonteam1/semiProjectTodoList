@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:semiproject_todolist_app/todolist.dart';
+import 'package:http/http.dart' as http;
 
 class ListEditinPage extends StatefulWidget {
   const ListEditinPage({
@@ -14,6 +17,7 @@ class _ListEditinPageState extends State<ListEditinPage> {
   late TextEditingController categoryCon, contentCon;
   late String selectValue;
   late List valueList;
+  late String result;
 
   @override
   void initState() {
@@ -107,15 +111,78 @@ class _ListEditinPageState extends State<ListEditinPage> {
   }
 
   // functions
-  listEdit(BuildContext context) {
-    // var url = Uri.parse(
-    //   'http://localhost:8080/Flutter/student_delete_return_flutter.jsp?'
-    // );
+  Future<bool> listEdit(BuildContext context) async{
+    var url = Uri.parse(
+      'http://localhost:8080/Flutter/list_update.jsp?category=$selectValue&content=${contentCon.text}&listId=${TodoList.listId}'
+    );
 
-    // return true;
+    var response = await http.get(url);
+
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+
+      result = dataConvertedJSON["result"];
+
+      if(result == "OK"){
+        _showDialog(context, "수정이");
+
+      }else if(result == "ERROR"){
+        errorSnackBar(context);
+      }
+    });
+    
+    return true;
   }
 
-  listDelete(BuildContext context) {
+  Future<bool> listDelete(BuildContext context) async{
+    var url = Uri.parse(
+      'http://localhost:8080/Flutter/list_delete.jsp?listId=${TodoList.listId}'
+    );
 
+    var response = await http.get(url);
+
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+
+      result = dataConvertedJSON["result"];
+
+      if(result == "OK"){
+        _showDialog(context, "삭제가");
+
+      }else if(result == "ERROR"){
+        errorSnackBar(context);
+      }
+    });
+    
+    return true;
+  }
+    _showDialog(BuildContext context, String todo){
+    showDialog(context: context, 
+    builder: (BuildContext context){
+      return AlertDialog(
+        title:  const Text('결과'),
+        content: Text('$todo 완료 되었습니다.'),
+        actions: [
+          TextButton(
+            onPressed:(){
+              Navigator.of(context).pop();
+              Navigator.pop(context);
+            }, 
+            child: const Text('OK'),
+          )
+        ],
+      );
+    }
+    );
+  }
+
+  errorSnackBar(BuildContext context){
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('입력 에러가 발생했습니다.'),
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.red,
+      )
+    );
   }
 }
