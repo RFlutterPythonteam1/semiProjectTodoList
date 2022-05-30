@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:semiproject_todolist_app/listeditingpage.dart';
 import 'package:semiproject_todolist_app/loginPage.dart';
 
 void main() {
@@ -12,7 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        "/" :(context) => const LoginPage(),
+        "/": (context) => const LoginPage(),
+        "/listEditingPage": (context) => const ListEditinPage(),
       },
       initialRoute: "/",
     );
