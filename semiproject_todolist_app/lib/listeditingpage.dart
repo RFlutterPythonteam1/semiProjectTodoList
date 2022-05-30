@@ -36,7 +36,6 @@ class _ListEditinPageState extends State<ListEditinPage> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        
         appBar: AppBar(
           title: const Text("ToDo List 수정하기"),
         ),
@@ -50,7 +49,15 @@ class _ListEditinPageState extends State<ListEditinPage> {
                   children: [
                     Container(
                       width: 200,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 0.3,
+                        ),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
                       child: DropdownButton(
+                        isDense: true,
                         value: selectValue,
                         items: valueList.map((value) {
                           return DropdownMenuItem(
@@ -69,6 +76,9 @@ class _ListEditinPageState extends State<ListEditinPage> {
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: 30,
+                ),
                 TextField(
                   controller: contentCon,
                   decoration: const InputDecoration(
@@ -86,7 +96,7 @@ class _ListEditinPageState extends State<ListEditinPage> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    if(contentCon.text.trim().isEmpty) {
+                    if (contentCon.text.trim().isEmpty) {
                       errorSnackBar(context);
                     } else {
                       _showDialog2(context, "수정");
