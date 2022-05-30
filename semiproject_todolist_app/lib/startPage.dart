@@ -16,36 +16,45 @@ class _StartPageState extends State<StartPage> {
         Navigator.pushNamed(context, "/");
       },
       child: Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Icon(
-                    Icons.list,
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  Text(
-                    "Todo List",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [Colors.blue, Colors.green],
+            ),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(
+                      Icons.list,
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              const BlinkText(
-                "아무곳이나 터치하여 시작합니다.",
-                duration: Duration(milliseconds: 1000),
-              )
-            ],
+                    SizedBox(
+                      width: 30,
+                    ),
+                    Text(
+                      "Todo List",
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                const BlinkText(
+                  "아무곳이나 터치하여 시작합니다.",
+                  duration: Duration(milliseconds: 1000),
+                )
+              ],
+            ),
           ),
         ),
       ),

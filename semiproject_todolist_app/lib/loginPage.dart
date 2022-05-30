@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<bool> getJSONData() async {
     var url = Uri.parse(
-        'http://172.16.100.226:8080/Flutter/sami_todolist_login.jsp?id=${idcontroller.text},pw=${pwcontroller.text}');
+        'http://localhost:8080/Flutter/sami_todolist_login.jsp?id=${idcontroller.text},pw=${pwcontroller.text}');
     var response = await http.get(url);
 
     setState(() {
