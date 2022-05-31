@@ -36,8 +36,10 @@ class _ListEditinPageState extends State<ListEditinPage> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title: const Text("ToDo List 수정하기"),
+          backgroundColor: Colors.white,
         ),
         body: Center(
           child: Padding(
