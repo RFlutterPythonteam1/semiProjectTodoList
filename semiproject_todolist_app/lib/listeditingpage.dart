@@ -24,8 +24,8 @@ class _ListEditinPageState extends State<ListEditinPage> {
     categoryCon = TextEditingController();
     contentCon = TextEditingController();
     contentCon.text = TodoList.content;
-    valueList = ["111", "222", "333"];
-    selectValue = "111";
+    valueList = ["공부", "문화생활", "운동", "약속", "중요"];
+    selectValue = "공부";
     super.initState();
   }
 
@@ -38,8 +38,24 @@ class _ListEditinPageState extends State<ListEditinPage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: const Text("ToDo List 수정하기"),
+          automaticallyImplyLeading: false,
+          primary : true,
           backgroundColor: Colors.white,
+          elevation : 0,
+          title: const Text(
+            'data',
+            style: TextStyle(
+              color: Colors.lightBlueAccent
+            ),
+          ),
+          leading: IconButton(
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
+            color: Colors.lightBlueAccent,
+            icon: Icon(Icons.arrow_back_ios),
+          ),
+
         ),
         body: Center(
           child: Padding(
