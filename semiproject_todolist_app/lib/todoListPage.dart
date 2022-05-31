@@ -115,9 +115,7 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
   // --functions
 
   reload(){
-    setState(() {
-      widget.u_id;
-    });
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ToDoListPage(u_id: widget.u_id),));
   }
 
 }
