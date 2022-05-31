@@ -42,7 +42,14 @@ class _InComoleteListState extends State<InComoleteList> {
       },
       child: Scaffold(
           body: data.isEmpty
-              ? const CircularProgressIndicator()
+              ?  Center(child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  CircularProgressIndicator(),
+                  SizedBox(height: 30,),
+                  Text("데이터 준비중...."),
+                ],
+              ))
               : ListView.builder(
                   itemCount: data.length,
                   itemBuilder: (context, index) => Dismissible(

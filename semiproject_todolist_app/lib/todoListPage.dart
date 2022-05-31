@@ -39,29 +39,47 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ToDO List',
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-     
-        actions: [
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          primary : true,
+          backgroundColor: Colors.white,
+          elevation : 0,
+          title: const Text(
+            'data',
+            style: TextStyle(
+              color: Colors.lightBlueAccent
+            ),
+          ),
+          leading: IconButton(
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
+            color: Colors.lightBlueAccent,
+            icon: Icon(Icons.arrow_back_ios),
+          ),
+          actions: [
           IconButton(
             onPressed: () {
               Navigator.pushNamed(context, '/addListPage').then((value) => reload());
             }, 
-            icon: const Icon(Icons.add)
+            icon: const Icon(Icons.add, color: Colors.lightBlueAccent,)
             )
         ],
-      ),
+
+        ),
+
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          const SizedBox(height: 30,),
           SizedBox(          
-            height: 100,
+            height: 50,
             child: Text(_today),          
             
           ),
           SizedBox(
-            height: 600,
+            height: 300,
             child: TabBarView(
               controller: controller,
               children: [InComoleteList(u_id: widget.u_id), ConmpleteList(u_id: widget.u_id,)]
