@@ -79,7 +79,7 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
             
           ),
           SizedBox(
-            height: 300,
+            height: 550,
             child: TabBarView(
               controller: controller,
               children: [InComoleteList(u_id: widget.u_id), ConmpleteList(u_id: widget.u_id,)]
@@ -111,4 +111,10 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
     );
     
   }
+
+  // --functions
+  
+  // reload() {
+  // }
+
 }
