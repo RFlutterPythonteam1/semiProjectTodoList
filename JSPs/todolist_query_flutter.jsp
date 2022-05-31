@@ -6,15 +6,16 @@
     pageEncoding="UTF-8"%>
 
 <% 
-String url_mysql = "jdbc:mysql://localhost/todolist?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";   
+String url_mysql = "jdbc:mysql://localhost/semitodo?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";   
 String id_mysql = "root";
 String pw_mysql = "qwer1234";
 
 request.setCharacterEncoding("UTF-8");
 String u_id =request.getParameter("u_id");
+String t_state = request.getParameter("t_state");
 
 
-String query = "select t_id, category, t_content from todolist where u_id = '" + u_id + "'";
+String query = "select t_id, category, t_content from todolist where u_id = '" + u_id + "' and t_state = " + t_state;
 
 JSONObject jsonList = new JSONObject();
 JSONArray itemList = new JSONArray();

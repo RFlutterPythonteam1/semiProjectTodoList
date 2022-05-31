@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => const LoginPage(),
         "/listEditingPage": (context) => const ListEditinPage(),
-        "/2": (context) => const ToDoListPage(),
+
         "/addListPage": (context) => const AddListPage(),
         "/startPage": (context) => const StartPage(),
       },

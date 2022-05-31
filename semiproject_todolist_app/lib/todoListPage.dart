@@ -6,7 +6,8 @@ import 'package:semiproject_todolist_app/incompletePage.dart';
 
 
 class ToDoListPage extends StatefulWidget {
-  const ToDoListPage({Key? key}) : super(key: key);
+  final String u_id;
+  const ToDoListPage({Key? key, required this.u_id}) : super(key: key);
 
   @override
   State<ToDoListPage> createState() => _ToDoListPageState();
@@ -64,7 +65,7 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
             height: 600,
             child: TabBarView(
               controller: controller,
-              children: [InComoleteList(), ConmpleteList()]
+              children: [InComoleteList(u_id: widget.u_id), ConmpleteList(u_id: widget.u_id,)]
               ),
           ),
         ],

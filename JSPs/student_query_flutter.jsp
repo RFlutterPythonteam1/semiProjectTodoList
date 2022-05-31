@@ -6,12 +6,11 @@
     pageEncoding="UTF-8"%>
 
 <%
-String url_mysql = "jdbc:mysql://localhost/semitodo?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
+String url_mysql = "jdbc:mysql://localhost/education?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
 String id_mysql = "root";
 String pw_mysql = "qwer1234";
-String id = request.getParameter("id");
 
-String whereDefault = "select id,pw from user where id = '" + id + "'";
+String whereDefault = "select scode, sname, sdept, sphone from student";
 
 JSONObject jsonList = new JSONObject();
 JSONArray itemList = new JSONArray();
@@ -24,9 +23,10 @@ try{
     ResultSet rs = stmt_mysql.executeQuery(whereDefault);
     while(rs.next()) {
         JSONObject tempJson = new JSONObject();
-        tempJson.put("id", rs.getString(1));
-        tempJson.put("pw", rs.getString(2));
-
+        tempJson.put("code", rs.getString(1));
+        tempJson.put("name", rs.getString(2));
+        tempJson.put("dept", rs.getString(3));
+        tempJson.put("phone", rs.getString(4));
 
         itemList.add(tempJson);
     }
