@@ -46,16 +46,16 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
           backgroundColor: Colors.white,
           elevation : 0,
           title: const Text(
-            'data',
+            'To Do List',
             style: TextStyle(
-              color: Colors.lightBlueAccent
+              color: Color.fromRGBO(123,154,204, 1)
             ),
           ),
           leading: IconButton(
             onPressed: (){
               Navigator.of(context).pop();
             },
-            color: Colors.lightBlueAccent,
+            color: Color.fromRGBO(123,154,204, 1),
             icon: Icon(Icons.arrow_back_ios),
           ),
           actions: [
@@ -63,7 +63,7 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
             onPressed: () {
               Navigator.pushNamed(context, '/addListPage');
             }, 
-            icon: const Icon(Icons.add, color: Colors.lightBlueAccent,)
+            icon: const Icon(Icons.add, color: Color.fromRGBO(123,154,204, 1),)
             )
         ],
 
@@ -94,14 +94,14 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
             Tab(
               icon: Icon(
                 Icons.looks_one,
-                color: Colors.blue,
+                color: Color.fromRGBO(123,154,204, 1),
               ),
               text: "미완료",
             ),
             Tab(
               icon: Icon(
                 Icons.looks_two,
-                color: Colors.red,
+                color: Colors.black,
               ),
               text: "완료",
             ),

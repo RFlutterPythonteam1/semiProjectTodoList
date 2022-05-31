@@ -43,16 +43,16 @@ class _ListEditinPageState extends State<ListEditinPage> {
           backgroundColor: Colors.white,
           elevation : 0,
           title: const Text(
-            'data',
+            '수정 및 삭제',
             style: TextStyle(
-              color: Colors.lightBlueAccent
+              color:Color.fromRGBO(123,154,204, 1),
             ),
           ),
           leading: IconButton(
             onPressed: (){
               Navigator.of(context).pop();
             },
-            color: Colors.lightBlueAccent,
+            color: Color.fromRGBO(123,154,204, 1),
             icon: Icon(Icons.arrow_back_ios),
           ),
 
@@ -112,6 +112,9 @@ class _ListEditinPageState extends State<ListEditinPage> {
                         color: Colors.blue,
                       ))),
                 ),
+                SizedBox(
+                  height:30,
+                ),
                 ElevatedButton(
                   onPressed: () {
                     if (contentCon.text.trim().isEmpty) {
@@ -124,20 +127,27 @@ class _ListEditinPageState extends State<ListEditinPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
+                      primary: Color.fromRGBO(123,154,204, 1),
                       minimumSize: const Size(400, 40)),
                   child: const Text(
                     "수정하기",
                   ),
+                ),
+                 SizedBox(
+                  height:0,
                 ),
                 ElevatedButton(
                   onPressed: () {
                     _showDialog2(context, "삭제");
                   },
                   style: ElevatedButton.styleFrom(
+                      
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
+                      primary: Color.fromRGBO(123,154,204, 1),
                       minimumSize: const Size(400, 40)),
+                      
                   child: const Text(
                     "삭제하기",
                   ),

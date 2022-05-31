@@ -142,6 +142,7 @@ class _InComoleteListState extends State<InComoleteList> {
         elevation: 8,
         child: ListTile(
           leading: CircleAvatar(
+            backgroundColor: Color.fromRGBO(123,154,204, 1),
             child: Text(data[index]['category']),
           ),
           title: Text(

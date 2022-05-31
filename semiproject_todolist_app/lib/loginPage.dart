@@ -18,6 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   late List userId;
   late String id;
   late String pw;
+  late List data;
 
   @override
   void initState() {
@@ -37,78 +38,82 @@ class _LoginPageState extends State<LoginPage> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           primary : true,
-          backgroundColor: Colors.white,
+          backgroundColor: Color.fromRGBO(252,246,245, 1),
           elevation : 0,
-          title: const Text(
-            'data',
-            style: TextStyle(
-              color: Colors.lightBlueAccent
-            ),
-          ),
+           
+          
           leading: IconButton(
             onPressed: (){
               Navigator.of(context).pop();
             },
-            color: Colors.lightBlueAccent,
+            color: Color.fromRGBO(123,154,204, 1),
             icon: Icon(Icons.arrow_back_ios),
           ),
 
         ),
       body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            //mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 150,
-              ),
-              const Text(
-                "Log In",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 30,
-                  letterSpacing: 10,
+        child: Container(
+          height: 750,
+          color: Color.fromRGBO(252,246,245, 1),
+          child: Center(
+            child: Column(
+              //mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 150,
                 ),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              Padding(
-                padding: EdgeInsets.all(30.0),
-                child: TextField(
-                  controller: idcontroller,
-                  decoration: InputDecoration(
-                    labelText: 'ID를 입력해주세요.',
+                const Text(
+                  "Log In",
+                  style: TextStyle(
+                    color: Color.fromRGBO(123,154,204, 1),
+                    fontSize: 30,
+                    letterSpacing: 10,
                   ),
-                  keyboardType: TextInputType.text,
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(30.0),
-                child: TextField(
-                  controller: pwcontroller,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: 'PW를 입력해주세요.',
+                const SizedBox(
+                  height: 50,
+                ),
+                Padding(
+                  padding: EdgeInsets.all(30.0),
+                  child: TextField(
+                    controller: idcontroller,
+                    decoration: InputDecoration(
+                      labelText: 'ID를 입력해주세요.',
+                    ),
+                    keyboardType: TextInputType.text,
                   ),
-                  keyboardType: TextInputType.text,
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    getJSONData();
-                  });
-                },
-                child: const Text('로그인'),
-              ),
-            ],
+                Padding(
+                  padding: EdgeInsets.all(30.0),
+                  child: TextField(
+                    controller: pwcontroller,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelText: 'PW를 입력해주세요.',
+                    ),
+                    keyboardType: TextInputType.text,
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color.fromRGBO(123,154,204, 1),
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      getJSONData();
+                    });
+                  },
+                  child: const Text('로그인'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
+      
     );
   }
 
