@@ -38,8 +38,24 @@ class _ListEditinPageState extends State<ListEditinPage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: const Text("ToDo List 수정하기"),
+          automaticallyImplyLeading: false,
+          primary : true,
           backgroundColor: Colors.white,
+          elevation : 0,
+          title: const Text(
+            'data',
+            style: TextStyle(
+              color: Colors.lightBlueAccent
+            ),
+          ),
+          leading: IconButton(
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
+            color: Colors.lightBlueAccent,
+            icon: Icon(Icons.arrow_back_ios),
+          ),
+
         ),
         body: Center(
           child: Padding(
