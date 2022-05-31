@@ -29,26 +29,39 @@ class _ConmpleteListState extends State<ConmpleteList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: data.isEmpty
-              ?  Center(child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  CircularProgressIndicator(),
-                  SizedBox(height: 30,),
-                  Text("데이터 준비중...."),
-                ],
-              ))
-              :
-        ListView.builder(
-            itemCount: data.length,
-            itemBuilder: (context, index) => Dismissible(
-                key: Key(data[index]['id']),
-                onDismissed: (direction) => _onDismissed(direction, index),
-                confirmDismiss: (direction) =>
-                    _confirmDismiss(direction, context, index),
-                background: _buildBackground,
-                secondaryBackground: _buildSecondBackground,
-                child: _buildListItem(index))));
+      body: data.isEmpty
+          ? Center(
+              child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                CircularProgressIndicator(),
+                SizedBox(
+                  height: 30,
+                ),
+                Text("데이터 준비중...."),
+              ],
+            ))
+          : ListView.builder(
+              itemCount: data.length,
+              itemBuilder: (context, index) => Dismissible(
+                  key: Key(data[index]['id']),
+                  onDismissed: (direction) => _onDismissed(direction, index),
+                  confirmDismiss: (direction) =>
+                      _confirmDismiss(direction, context, index),
+                  background: _buildBackground,
+                  secondaryBackground: _buildSecondBackground,
+                  child: _buildListItem(index))),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/addListPage');
+        },
+        backgroundColor: Color.fromRGBO(123, 154, 204, 1),
+        child: const Icon(
+          Icons.add,
+          color: Colors.black,
+        ),
+      ),
+    );
   }
 
   // --- Function ---
@@ -121,16 +134,16 @@ class _ConmpleteListState extends State<ConmpleteList> {
         TodoList.content = data[index]['content'];
         TodoList.category = data[index]['category'];
         TodoList.listId = int.parse(data[index]['id']);
-        Navigator.pushNamed(context, "/listEditingPage").then((value) => getJSONData());
+        Navigator.pushNamed(context, "/listEditingPage")
+            .then((value) => getJSONData());
       },
       child: Card(
         margin: const EdgeInsets.all(8),
         elevation: 8,
         child: ListTile(
           leading: CircleAvatar(
-            backgroundColor: Color.fromRGBO(123,154,204, 1),
+            backgroundColor: Color.fromRGBO(123, 154, 204, 1),
             child: Text(data[index]['category']),
-            
           ),
           title: Text(
             data[index]['content'],

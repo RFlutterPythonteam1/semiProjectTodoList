@@ -58,14 +58,7 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
             color: Color.fromRGBO(123,154,204, 1),
             icon: Icon(Icons.arrow_back_ios),
           ),
-          actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/addListPage');
-            }, 
-            icon: const Icon(Icons.add, color: Color.fromRGBO(123,154,204, 1),)
-            )
-        ],
+
 
         ),
 
@@ -79,7 +72,7 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
             
           ),
           SizedBox(
-            height: 300,
+            height: 550,
             child: TabBarView(
               controller: controller,
               children: [InComoleteList(u_id: widget.u_id), ConmpleteList(u_id: widget.u_id,)]

@@ -19,13 +19,12 @@ class _InComoleteListState extends State<InComoleteList> {
   late List data;
   late int t_id;
 
-
   @override
   void initState() {
     data = [];
     t_id = -1;
     getJSONData();
-    
+
     super.initState();
   }
 
@@ -34,42 +33,56 @@ class _InComoleteListState extends State<InComoleteList> {
     return GestureDetector(
       onLongPress: () {
         Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) {
-                  return ListEditinPage();
-                }),
-              ).then((value) => getJSONData());        
+          context,
+          MaterialPageRoute(builder: (context) {
+            return ListEditinPage();
+          }),
+        ).then((value) => getJSONData());
       },
       child: Scaffold(
-          body: data.isEmpty
-              ?  Center(child: Column(
+        body: data.isEmpty
+            ? Center(
+                child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   CircularProgressIndicator(),
-                  SizedBox(height: 30,),
+                  SizedBox(
+                    height: 30,
+                  ),
                   Text("데이터 준비중...."),
                 ],
               ))
-              : ListView.builder(
-                  itemCount: data.length,
-                  itemBuilder: (context, index) => Dismissible(
-                      key: Key(data[index]['id']),
-                      onDismissed: (direction) => _onDismissed(direction, index),
-                      confirmDismiss: (direction) =>
-                          _confirmDismiss(direction, context, index),
-                      background: _buildBackground,
-                      secondaryBackground: _buildSecondBackground,
-                      child: _buildListItem(index)))),
+            : ListView.builder(
+                itemCount: data.length,
+                itemBuilder: (context, index) => Dismissible(
+                    key: Key(data[index]['id']),
+                    onDismissed: (direction) => _onDismissed(direction, index),
+                    confirmDismiss: (direction) =>
+                        _confirmDismiss(direction, context, index),
+                    background: _buildBackground,
+                    secondaryBackground: _buildSecondBackground,
+                    child: _buildListItem(index))),
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/addListPage');
+            },
+            backgroundColor:Color.fromRGBO(123, 154, 204, 1) ,
+            child: const Icon(
+              Icons.add,
+              color: Colors.black,
+            ),
+            ),
+      ),
     );
   }
 
   // --- Function ---
   _onDismissed(DismissDirection direction, int index) {
     // if (direction == DismissDirection.endToStart) {
-      
+
     // }
     // if (direction == DismissDirection.startToEnd) {
-      
+
     // }
   }
 
@@ -85,7 +98,6 @@ class _InComoleteListState extends State<InComoleteList> {
               actions: [
                 ElevatedButton(
                   onPressed: () {
-                  
                     return Navigator.of(context).pop(false);
                   },
                   child: const Text('취소'),
@@ -110,7 +122,6 @@ class _InComoleteListState extends State<InComoleteList> {
               actions: <Widget>[
                 ElevatedButton(
                   onPressed: () {
-                    
                     return Navigator.of(context).pop(false);
                   },
                   child: const Text('취소'),
@@ -135,14 +146,15 @@ class _InComoleteListState extends State<InComoleteList> {
         TodoList.content = data[index]['content'];
         TodoList.category = data[index]['category'];
         TodoList.listId = int.parse(data[index]['id']);
-        Navigator.pushNamed(context, "/listEditingPage").then((value) => getJSONData());
+        Navigator.pushNamed(context, "/listEditingPage")
+            .then((value) => getJSONData());
       },
       child: Card(
         margin: const EdgeInsets.all(8),
         elevation: 8,
         child: ListTile(
           leading: CircleAvatar(
-            backgroundColor: Color.fromRGBO(123,154,204, 1),
+            backgroundColor: Color.fromRGBO(123, 154, 204, 1),
             child: Text(data[index]['category']),
           ),
           title: Text(
@@ -209,7 +221,7 @@ class _InComoleteListState extends State<InComoleteList> {
     return true; // return을 하지만 쓰지않는다
   }
 
-    Future<bool> deleteJSONData(int index) async {
+  Future<bool> deleteJSONData(int index) async {
     t_id = int.parse(data[index]['id']);
     var url = Uri.parse(
         'http://localhost:8080/Flutter/list_delete.jsp?listId=$t_id'); // web만 post방식을 사용 나머지는 get방식 사용 - 자체 암호화를 위해
@@ -219,5 +231,4 @@ class _InComoleteListState extends State<InComoleteList> {
 
     return true; // return을 하지만 쓰지않는다
   }
-
 } // End

@@ -54,41 +54,45 @@ class _AddListPageState extends State<AddListPage> {
         ),
                       
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: 20 ,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 0.3),
-                  borderRadius: BorderRadius.circular(4),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                SizedBox(height: 100,),
+                Row(
+                  children: [
+                    Container(
+                      height: 20 ,
+                      decoration: BoxDecoration(
+                        border: Border.all(width: 0.3),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      width: 200,
+                      child: DropdownButton(
+                        isDense: true,
+                        value: selectValue,
+                        items: valueList
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(), 
+                        onChanged: (value){
+                          setState(() {
+                            selectValue = value.toString();
+                          });
+                        },
+                        dropdownColor: Colors.grey,
+                        isExpanded: true,
+                      ),
+                    ),
+                  ],
                 ),
-                width: 200,
-                child: DropdownButton(
-                  isDense: true,
-                  value: selectValue,
-                  items: valueList
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(), 
-                  onChanged: (value){
-                    setState(() {
-                      selectValue = value.toString();
-                    });
-                  },
-                  dropdownColor: Colors.grey,
-                  isExpanded: true,
+                SizedBox(
+                  height: 20,
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                width: 200,
-                child: TextField(
+                TextField(
                   controller: tec,
                   decoration: InputDecoration(
                     labelText: '내용을 입력하세요',
@@ -97,31 +101,31 @@ class _AddListPageState extends State<AddListPage> {
                     )
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
-                style: 
-                 ButtonStyle(
-                    side: MaterialStateProperty.all(BorderSide(width: 5,color: Color.fromRGBO(123,154,204, 1),))  ,
-                    minimumSize: MaterialStateProperty.all(Size(200, 40)),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),
+                SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  style: 
+                   ButtonStyle(
+                      side: MaterialStateProperty.all(BorderSide(width: 5,color: Color.fromRGBO(123,154,204, 1),))  ,
+                      minimumSize: MaterialStateProperty.all(Size(400, 40)),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),
+                        ),
+                       
                       ),
-                     
+                      backgroundColor: MaterialStateProperty.all( Color.fromRGBO(123,154,204,1)),
                     ),
-                    backgroundColor: MaterialStateProperty.all( Color.fromRGBO(123,154,204,1)),
-                  ),
-                onPressed: () {
-                  sendContent();
+                  onPressed: () {
+                    sendContent();
 
-                },
-                child: const Text('전송'),
-                
-                
-              ),
-            ],
+                  },
+                  child: const Text('전송'),
+                  
+                  
+                ),
+              ],
+            ),
           ),
         ),
       ),
