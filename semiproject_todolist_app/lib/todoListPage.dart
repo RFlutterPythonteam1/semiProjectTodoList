@@ -61,7 +61,7 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
           actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/addListPage').then((value) => reload());
+              Navigator.pushNamed(context, '/addListPage');
             }, 
             icon: const Icon(Icons.add, color: Colors.lightBlueAccent,)
             )
@@ -79,7 +79,7 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
             
           ),
           SizedBox(
-            height: 300,
+            height: 550,
             child: TabBarView(
               controller: controller,
               children: [InComoleteList(u_id: widget.u_id), ConmpleteList(u_id: widget.u_id,)]
@@ -113,9 +113,8 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
   }
 
   // --functions
-
-  reload(){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ToDoListPage(u_id: widget.u_id),));
-  }
+  
+  // reload() {
+  // }
 
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:semiproject_todolist_app/todolist.dart';
 
 
 class AddListPage extends StatefulWidget {
@@ -16,12 +17,12 @@ class _AddListPageState extends State<AddListPage> {
   late List<String> valueList;
 
   final tec = TextEditingController();
-  
+
   @override
   void initState() {
     super.initState();
-    valueList = ["집안일", "약속", "과제" , "학원"];
-    selectValue = "집안일";
+    valueList = ["공부","문화생활","운동","약속","중요"];
+    selectValue = "공부";
   }
   
   @override
@@ -130,7 +131,7 @@ class _AddListPageState extends State<AddListPage> {
   sendContent() async{
     if(tec.text.trim().isNotEmpty){
       
-      String u_id = 'qwer';
+      String u_id = TodoList.userId;
       String category = selectValue;
       String t_content = tec.text;
       
