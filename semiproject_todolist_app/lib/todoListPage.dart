@@ -46,8 +46,7 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
         actions: [
           IconButton(
             onPressed: () {
-              
-
+              Navigator.pushNamed(context, '/addListPage');
             }, 
             icon: const Icon(Icons.add)
             )

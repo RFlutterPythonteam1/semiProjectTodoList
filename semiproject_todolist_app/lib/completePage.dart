@@ -172,9 +172,11 @@ class _ConmpleteListState extends State<ConmpleteList> {
 
     setState(() {
       // 화면 구성이 바뀌어야 쓴다
+
       var dataConvertedJSON =
           json.decode(utf8.decode(response.bodyBytes)); // utf-8 타입으로 하나씩 변환
       List result = dataConvertedJSON['results'];
+      data.clear();
       data.addAll(result);
     });
 

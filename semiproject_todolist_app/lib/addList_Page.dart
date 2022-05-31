@@ -32,7 +32,6 @@ class _AddListPageState extends State<AddListPage> {
       },
       child: Scaffold(
         backgroundColor: Colors.white,
-        
         appBar: AppBar(
           automaticallyImplyLeading: false,
           primary : true,
@@ -46,19 +45,12 @@ class _AddListPageState extends State<AddListPage> {
           ),
           leading: IconButton(
             onPressed: (){
-
+              Navigator.of(context).pop();
             },
             color: Colors.lightBlueAccent,
             icon: Icon(Icons.arrow_back_ios),
           ),
-          // actions: [
-          //   IconButton(
-          //     icon: Icon(Icons.add),
-          //     onPressed: (){
-          //       Navigator.pushNamed(context, '/listEditingPage');
-          //     }
-          //   ) 
-          // ],
+
         ),
                       
         body: Center(
@@ -120,6 +112,7 @@ class _AddListPageState extends State<AddListPage> {
                   ),
                 onPressed: () {
                   sendContent();
+
                 },
                 child: const Text('전송'),
                 
@@ -166,6 +159,7 @@ class _AddListPageState extends State<AddListPage> {
           TextButton(
             onPressed:(){
               Navigator.of(context).pop();
+              
             }, 
             child: const Text('OK'),
           )
