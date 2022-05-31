@@ -3,9 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:semiproject_todolist_app/listeditingpage.dart';
+import 'package:semiproject_todolist_app/todolist.dart';
 
 class ConmpleteList extends StatefulWidget {
-  const ConmpleteList({Key? key}) : super(key: key);
+  final String u_id;
+  const ConmpleteList({Key? key, required this.u_id}) : super(key: key);
 
   @override
   State<ConmpleteList> createState() => _ConmpleteListState();
@@ -14,7 +16,6 @@ class ConmpleteList extends StatefulWidget {
 class _ConmpleteListState extends State<ConmpleteList> {
   // Property
   late List data;
-  String u_id = "qwer";
   late int t_id;
   @override
   void initState() {
@@ -27,27 +28,17 @@ class _ConmpleteListState extends State<ConmpleteList> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onLongPress: () {
-        Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) {
-                  return ListEditinPage();
-                }),
-              ).then((value) => getJSONData());        
-      },
-      child: Scaffold(
-          body: ListView.builder(
-              itemCount: data.length,
-              itemBuilder: (context, index) => Dismissible(
-                  key: Key(data[index]['id']),
-                  onDismissed: (direction) => _onDismissed(direction, index),
-                  confirmDismiss: (direction) =>
-                      _confirmDismiss(direction, context, index),
-                  background: _buildBackground,
-                  secondaryBackground: _buildSecondBackground,
-                  child: _buildListItem(index)))),
-    );
+    return Scaffold(
+        body: ListView.builder(
+            itemCount: data.length,
+            itemBuilder: (context, index) => Dismissible(
+                key: Key(data[index]['id']),
+                onDismissed: (direction) => _onDismissed(direction, index),
+                confirmDismiss: (direction) =>
+                    _confirmDismiss(direction, context, index),
+                background: _buildBackground,
+                secondaryBackground: _buildSecondBackground,
+                child: _buildListItem(index))));
   }
 
   // --- Function ---
@@ -114,17 +105,25 @@ class _ConmpleteListState extends State<ConmpleteList> {
     return Future.value(false);
   }
 
-  Card _buildListItem(int index) {
-    return Card(
-      margin: const EdgeInsets.all(8),
-      elevation: 8,
-      child: ListTile(
-        leading: CircleAvatar(
-          child: Text(data[index]['category']),
-        ),
-        title: Text(
-          data[index]['content'],
-          style: const TextStyle(fontSize: 16),
+  GestureDetector _buildListItem(int index) {
+    return GestureDetector(
+      onTap: () {
+        TodoList.content = data[index]['content'];
+        TodoList.category = data[index]['category'];
+        TodoList.listId = int.parse(data[index]['id']);
+        Navigator.pushNamed(context, "/listEditingPage").then((value) => getJSONData());
+      },
+      child: Card(
+        margin: const EdgeInsets.all(8),
+        elevation: 8,
+        child: ListTile(
+          leading: CircleAvatar(
+            child: Text(data[index]['category']),
+          ),
+          title: Text(
+            data[index]['content'],
+            style: const TextStyle(fontSize: 16),
+          ),
         ),
       ),
     );
@@ -158,7 +157,7 @@ class _ConmpleteListState extends State<ConmpleteList> {
     // Future, async, await 는 한 세트로
     // 비동기 함수로 생성
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/todolist_query_flutter.jsp?u_id=$u_id&t_state=1'); // web만 post방식을 사용 나머지는 get방식 사용 - 자체 암호화를 위해
+        'http://localhost:8080/Flutter/todolist_query_flutter.jsp?u_id=${widget.u_id}&t_state=1'); // web만 post방식을 사용 나머지는 get방식 사용 - 자체 암호화를 위해
     var response = await http.get(url); // 데이터를 가져와서 빌드가 끝날때까지 대기
 
     setState(() {
@@ -188,7 +187,7 @@ class _ConmpleteListState extends State<ConmpleteList> {
   Future<bool> deleteJSONData(int index) async {
     t_id = int.parse(data[index]['id']);
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/list_delete.jsp?t_id=$t_id'); // web만 post방식을 사용 나머지는 get방식 사용 - 자체 암호화를 위해
+        'http://localhost:8080/Flutter/list_delete.jsp?listId=$t_id'); // web만 post방식을 사용 나머지는 get방식 사용 - 자체 암호화를 위해
     var response2 = await http.get(url); // 데이터를 가져와서 빌드가 끝날때까지 대기
     print(url);
     getJSONData();

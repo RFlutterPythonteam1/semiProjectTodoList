@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:semiproject_todolist_app/addList_Page.dart';
 import 'package:semiproject_todolist_app/listeditingpage.dart';
 import 'package:semiproject_todolist_app/loginPage.dart';
+import 'package:semiproject_todolist_app/startPage.dart';
 import 'package:semiproject_todolist_app/todoListPage.dart';
 
 void main() {
@@ -14,17 +15,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
       routes: {
         "/": (context) => const LoginPage(),
         "/listEditingPage": (context) => const ListEditinPage(),
-        "/2":(context) => const ToDoListPage(),
-        "/addListPage" :(context) => const AddListPage(),
-      },
 
-      initialRoute: "/",
+        "/addListPage": (context) => const AddListPage(),
+        "/startPage": (context) => const StartPage(),
+      },
+      initialRoute: "/startPage",
       debugShowCheckedModeBanner: false,
-      
     );
   }
 }
