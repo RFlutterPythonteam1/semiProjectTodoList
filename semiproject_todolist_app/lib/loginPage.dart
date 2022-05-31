@@ -163,7 +163,7 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () {
                           TodoList.userId = idcontroller.text;
 
-                          Navigator.pop(context);
+
                           Navigator.of(context).pop();
                            Navigator.push(
                             context,

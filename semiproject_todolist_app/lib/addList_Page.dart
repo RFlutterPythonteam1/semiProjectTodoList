@@ -119,7 +119,7 @@ class _AddListPageState extends State<AddListPage> {
                     ),
                   onPressed: () {
                     sendContent();
-
+                    Navigator.pop(context);
                   },
                   child: const Text('전송'),
                   

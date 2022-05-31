@@ -64,7 +64,7 @@ class _InComoleteListState extends State<InComoleteList> {
                     child: _buildListItem(index))),
         floatingActionButton: FloatingActionButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/addListPage');
+              Navigator.pushNamed(context, '/addListPage').then((value) => getJSONData());
             },
             backgroundColor:Color.fromRGBO(123, 154, 204, 1) ,
             child: const Icon(
