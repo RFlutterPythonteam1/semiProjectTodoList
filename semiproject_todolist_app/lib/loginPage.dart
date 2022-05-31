@@ -17,16 +17,18 @@ class _LoginPageState extends State<LoginPage> {
   late List userId;
   late String id;
   late String pw;
+  late List data;
 
   @override
   void initState() {
     super.initState();
     idcontroller = TextEditingController();
     pwcontroller = TextEditingController();
-    id = '';
-    pw = '';
+    id = " ";
+    pw = " ";
+    data=[];
     userId =[];
-    getJSONData();
+  
   }
 
   @override
@@ -106,14 +108,16 @@ class _LoginPageState extends State<LoginPage> {
 
     Future<bool> getJSONData() async {
       var url = Uri.parse(
-          'http://localhost:8080/Flutter/sami_todolist_login.jsp?id=${idcontroller.text},pw=${pwcontroller.text}');
+          'http://localhost:8080/Flutter/sami_todolist_login.jsp?id=${idcontroller.text}&pw=${pwcontroller.text}');
       var response = await http.get(url);
 
-
+      print(url);
       setState(() {
         var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
         List result = dataConvertedJSON['results'];
+        data.addAll(result);
 
+        data[0]["id"];
         if (idcontroller.text != result[0]["id"]) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
