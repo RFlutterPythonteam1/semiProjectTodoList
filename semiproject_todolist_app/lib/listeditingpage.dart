@@ -24,8 +24,8 @@ class _ListEditinPageState extends State<ListEditinPage> {
     categoryCon = TextEditingController();
     contentCon = TextEditingController();
     contentCon.text = TodoList.content;
-    valueList = ["111", "222", "333"];
-    selectValue = "111";
+    valueList = ["공부", "문화생활", "운동", "약속", "중요"];
+    selectValue = "공부";
     super.initState();
   }
 
