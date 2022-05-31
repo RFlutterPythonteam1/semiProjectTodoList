@@ -38,16 +38,16 @@ class _AddListPageState extends State<AddListPage> {
           backgroundColor: Colors.white,
           elevation : 0,
           title: const Text(
-            'data',
+            '추가',
             style: TextStyle(
-              color: Colors.lightBlueAccent
+              color: Color.fromRGBO(123,154,204, 1)
             ),
           ),
           leading: IconButton(
             onPressed: (){
               Navigator.of(context).pop();
             },
-            color: Colors.lightBlueAccent,
+            color: Color.fromRGBO(123,154,204, 1),
             icon: Icon(Icons.arrow_back_ios),
           ),
 
@@ -104,11 +104,14 @@ class _AddListPageState extends State<AddListPage> {
               ElevatedButton(
                 style: 
                  ButtonStyle(
-                    side: MaterialStateProperty.all(BorderSide(width: 5,color: Colors.blue))  ,
+                    side: MaterialStateProperty.all(BorderSide(width: 5,color: Color.fromRGBO(123,154,204, 1),))  ,
                     minimumSize: MaterialStateProperty.all(Size(200, 40)),
                     shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),
+                      ),
+                     
                     ),
+                    backgroundColor: MaterialStateProperty.all( Color.fromRGBO(123,154,204,1)),
                   ),
                 onPressed: () {
                   sendContent();

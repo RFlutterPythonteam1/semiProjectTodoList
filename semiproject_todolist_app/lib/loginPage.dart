@@ -25,18 +25,10 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
     idcontroller = TextEditingController();
     pwcontroller = TextEditingController();
-<<<<<<< HEAD
-    id = " ";
-    pw = " ";
-    data=[];
-    userId =[];
-  
-=======
     id = '';
     pw = '';
     userId = [];
     // getJSONData();
->>>>>>> 76917fa279ae1de11477264cfc717295c36edb8d
   }
 
   @override
@@ -46,105 +38,87 @@ class _LoginPageState extends State<LoginPage> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           primary : true,
-          backgroundColor: Colors.white,
+          backgroundColor: Color.fromRGBO(252,246,245, 1),
           elevation : 0,
-          title: const Text(
-            'data',
-            style: TextStyle(
-              color: Colors.lightBlueAccent
-            ),
-          ),
+           
+          
           leading: IconButton(
             onPressed: (){
               Navigator.of(context).pop();
             },
-            color: Colors.lightBlueAccent,
+            color: Color.fromRGBO(123,154,204, 1),
             icon: Icon(Icons.arrow_back_ios),
           ),
 
         ),
       body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            //mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 150,
-              ),
-              const Text(
-                "Log In",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 30,
-                  letterSpacing: 10,
+        child: Container(
+          height: 750,
+          color: Color.fromRGBO(252,246,245, 1),
+          child: Center(
+            child: Column(
+              //mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 150,
                 ),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              Padding(
-                padding: EdgeInsets.all(30.0),
-                child: TextField(
-                  controller: idcontroller,
-                  decoration: InputDecoration(
-                    labelText: 'ID를 입력해주세요.',
+                const Text(
+                  "Log In",
+                  style: TextStyle(
+                    color: Color.fromRGBO(123,154,204, 1),
+                    fontSize: 30,
+                    letterSpacing: 10,
                   ),
-                  keyboardType: TextInputType.text,
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(30.0),
-                child: TextField(
-                  controller: pwcontroller,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: 'PW를 입력해주세요.',
+                const SizedBox(
+                  height: 50,
+                ),
+                Padding(
+                  padding: EdgeInsets.all(30.0),
+                  child: TextField(
+                    controller: idcontroller,
+                    decoration: InputDecoration(
+                      labelText: 'ID를 입력해주세요.',
+                    ),
+                    keyboardType: TextInputType.text,
                   ),
-                  keyboardType: TextInputType.text,
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    getJSONData();
-                  });
-                },
-                child: const Text('로그인'),
-              ),
-            ],
+                Padding(
+                  padding: EdgeInsets.all(30.0),
+                  child: TextField(
+                    controller: pwcontroller,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelText: 'PW를 입력해주세요.',
+                    ),
+                    keyboardType: TextInputType.text,
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color.fromRGBO(123,154,204, 1),
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      getJSONData();
+                    });
+                  },
+                  child: const Text('로그인'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
+      
     );
   }
 
 //function
 
-<<<<<<< HEAD
-    Future<bool> getJSONData() async {
-      var url = Uri.parse(
-          'http://localhost:8080/Flutter/sami_todolist_login.jsp?id=${idcontroller.text}&pw=${pwcontroller.text}');
-      var response = await http.get(url);
-
-      print(url);
-      setState(() {
-        var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
-        List result = dataConvertedJSON['results'];
-        data.addAll(result);
-
-        data[0]["id"];
-        if (idcontroller.text != result[0]["id"]) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text(
-                "id를 다시 확인해주세요.",
-              ),
-              duration: Duration(seconds: 1),
-              backgroundColor: Colors.red,
-=======
   Future<bool> getJSONData() async {
     var url = Uri.parse(
         'http://localhost:8080/Flutter/sami_todolist_login.jsp?id=${idcontroller.text}');
@@ -158,7 +132,6 @@ class _LoginPageState extends State<LoginPage> {
           const SnackBar(
             content: Text(
               "id를 다시 확인해주세요.",
->>>>>>> 76917fa279ae1de11477264cfc717295c36edb8d
             ),
             duration: Duration(seconds: 1),
             backgroundColor: Colors.red,

@@ -21,7 +21,7 @@ class _StartPageState extends State<StartPage> {
             gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
-              colors: [Colors.blue, Colors.green],
+              colors: [Color.fromRGBO(252,246,245, 1), Color.fromRGBO(123,154,204, 1)],
             ),
           ),
           child: Center(
