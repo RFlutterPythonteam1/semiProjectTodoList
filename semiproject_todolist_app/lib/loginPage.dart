@@ -42,18 +42,27 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('To do List'),
-        titleTextStyle: const TextStyle(
-          color: Colors.black,
-          fontSize: 30,
-          letterSpacing: 13,
-          fontWeight: FontWeight.bold,
-        ),
-        elevation: 0,
         backgroundColor: Colors.white,
-      ),
-      backgroundColor: Colors.white,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          primary : true,
+          backgroundColor: Colors.white,
+          elevation : 0,
+          title: const Text(
+            'data',
+            style: TextStyle(
+              color: Colors.lightBlueAccent
+            ),
+          ),
+          leading: IconButton(
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
+            color: Colors.lightBlueAccent,
+            icon: Icon(Icons.arrow_back_ios),
+          ),
+
+        ),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
