@@ -119,7 +119,7 @@ class _ConmpleteListState extends State<ConmpleteList> {
                     setJSONData(index, 0);
                     return Navigator.of(context).pop(true);
                   },
-                  child: const Text('완료'),
+                  child: const Text('미완료'),
                 ),
               ],
             );

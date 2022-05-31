@@ -104,4 +104,10 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
     );
     
   }
+
+  // --functions
+  
+  // reload() {
+  // }
+
 }
