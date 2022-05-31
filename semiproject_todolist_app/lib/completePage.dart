@@ -29,7 +29,17 @@ class _ConmpleteListState extends State<ConmpleteList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView.builder(
+        body: data.isEmpty
+              ?  Center(child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  CircularProgressIndicator(),
+                  SizedBox(height: 30,),
+                  Text("데이터 준비중...."),
+                ],
+              ))
+              :
+        ListView.builder(
             itemCount: data.length,
             itemBuilder: (context, index) => Dismissible(
                 key: Key(data[index]['id']),

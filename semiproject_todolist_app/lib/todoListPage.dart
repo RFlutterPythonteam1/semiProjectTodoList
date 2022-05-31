@@ -54,15 +54,16 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
         ],
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          const SizedBox(height: 30,),
           SizedBox(          
-            height: 100,
+            height: 50,
             child: Text(_today),          
             
           ),
           SizedBox(
-            height: 600,
+            height: 300,
             child: TabBarView(
               controller: controller,
               children: [InComoleteList(u_id: widget.u_id), ConmpleteList(u_id: widget.u_id,)]
