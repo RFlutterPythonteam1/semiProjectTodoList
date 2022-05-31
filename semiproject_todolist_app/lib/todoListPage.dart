@@ -58,14 +58,7 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
             color: Color.fromRGBO(123,154,204, 1),
             icon: Icon(Icons.arrow_back_ios),
           ),
-          actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/addListPage');
-            }, 
-            icon: const Icon(Icons.add, color: Color.fromRGBO(123,154,204, 1),)
-            )
-        ],
+
 
         ),
 
