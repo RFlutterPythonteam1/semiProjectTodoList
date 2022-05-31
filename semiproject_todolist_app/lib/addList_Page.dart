@@ -16,7 +16,7 @@ class _AddListPageState extends State<AddListPage> {
   late List<String> valueList;
 
   final tec = TextEditingController();
-
+  
   @override
   void initState() {
     super.initState();
@@ -52,7 +52,7 @@ class _AddListPageState extends State<AddListPage> {
           ),
 
         ),
-                      
+        
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

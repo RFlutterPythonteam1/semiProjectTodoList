@@ -46,7 +46,7 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/addListPage');
+              Navigator.pushNamed(context, '/addListPage').then((value) => reload());
             }, 
             icon: const Icon(Icons.add)
             )
@@ -93,4 +93,13 @@ class _ToDoListPageState extends State<ToDoListPage> with SingleTickerProviderSt
     );
     
   }
+
+  // --functions
+
+  reload(){
+    setState(() {
+      widget.u_id;
+    });
+  }
+
 }
